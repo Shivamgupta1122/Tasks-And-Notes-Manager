@@ -58,19 +58,22 @@ const Seed2 = async function Note() {      //Add raw data to Note table
 
 const Seed = async function Task() {     //Add raw data to Tasks Table
     await db.sync()
-    await Tasks.create({
+    await Tasks.bulkCreate([{
         Title: "Learn  Nodejs",           //1
         Description: "Complete NodeJs Assignment",
         DueDate: "16/04/2020",
         Status: "Incomplete",
         Priority: "High"
-    })
-    await Tasks.create({
-        Title: "Learn Angular",         //2
+    }
+    ,
+        {Title: "Learn Angular",         //2
         Description: "Complete TypeScript till now",
         DueDate: "20/02/2020",
         Status: "Incomplete",
         Priority: "Medium"
+    }],
+    {
+    IgnoreDuplicates : true
     })
 }
 
